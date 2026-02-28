@@ -1,0 +1,87 @@
+import { motion } from "framer-motion";
+import { Briefcase, MapPin, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import SectionHeading from "@/components/SectionHeading";
+
+const openings = [
+  { title: "Site Engineer", location: "Bangalore", type: "Full-time" },
+  { title: "Project Manager", location: "Bangalore", type: "Full-time" },
+  { title: "Civil Supervisor", location: "Multiple Locations", type: "Full-time" },
+];
+
+const Career = () => {
+  return (
+    <>
+      <section className="py-24 bg-gradient-navy">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4"
+          >
+            Join Our <span className="text-gradient-gold">Team</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-muted-foreground max-w-2xl mx-auto"
+          >
+            Build your career while building landmarks
+          </motion.p>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <SectionHeading subtitle="Opportunities" title="Current Openings" />
+          <div className="space-y-6">
+            {openings.map((job, i) => (
+              <motion.div
+                key={job.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-card border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-500 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
+                <div>
+                  <h3 className="text-lg font-heading font-semibold text-foreground mb-2">{job.title}</h3>
+                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-primary" />{job.location}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-primary" />{job.type}</span>
+                  </div>
+                </div>
+                <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground shrink-0">
+                  <a href="mailto:nikhilvarmaconstructions09@gmail.com?subject=Application for {job.title}">
+                    Apply Now
+                  </a>
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center bg-card border border-border rounded-xl p-10"
+          >
+            <Briefcase className="w-10 h-10 text-primary mx-auto mb-4" />
+            <h3 className="text-xl font-heading font-semibold text-foreground mb-2">Don't see your role?</h3>
+            <p className="text-muted-foreground text-sm mb-6">
+              Send us your resume and we'll keep you in mind for future openings.
+            </p>
+            <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark">
+              <a href="mailto:nikhilvarmaconstructions09@gmail.com?subject=General Application">
+                Send Your Resume
+              </a>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Career;
