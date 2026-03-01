@@ -16,9 +16,15 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:nikhilvarmaconstructions09@gmail.com?subject=${encodeURIComponent(formData.subject || "Website Inquiry")}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nLocation: ${formData.location}\n\n${formData.message}`)}`;
-    window.open(mailtoLink);
-    toast({ title: "Thank you!", description: "Your email client has been opened with the inquiry details." });
+    try {
+      const mailtoLink = `mailto:nikhilvarmaconstructions09@gmail.com?subject=${encodeURIComponent(formData.subject || "Website Inquiry")}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nLocation: ${formData.location}\n\n${formData.message}`)}`;
+      window.location.href = mailtoLink;
+      toast({ title: "Thank you!", description: "Your email client has been opened with the inquiry details." });
+      setFormData({ name: "", email: "", phone: "", location: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({ title: "Error", description: "Something went wrong. Please try again." });
+    }
   };
 
   return (
