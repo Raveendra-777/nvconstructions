@@ -59,11 +59,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border text-center">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Nikhil Varma Constructions. All rights reserved.
-          </p>
-        </div>
       </div>
     </footer>
   );
