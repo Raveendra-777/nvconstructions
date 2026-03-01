@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -23,7 +24,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <span className="text-2xl font-heading font-bold text-gradient-gold">NVC</span>
+            <img src={logo} alt="NVC Logo" className="h-14 w-auto" />
             <div className="hidden sm:block">
               <p className="text-sm font-heading font-semibold text-foreground leading-tight">Nikhil Varma</p>
               <p className="text-xs text-primary leading-tight">Constructions</p>
