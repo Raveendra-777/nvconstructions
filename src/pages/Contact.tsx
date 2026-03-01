@@ -18,12 +18,20 @@ const Contact = () => {
     e.preventDefault();
     try {
       const mailtoLink = `mailto:nikhilvarmaconstructions09@gmail.com?subject=${encodeURIComponent(formData.subject || "Website Inquiry")}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nLocation: ${formData.location}\n\n${formData.message}`)}`;
-      window.location.href = mailtoLink;
-      toast({ title: "Thank you!", description: "Your email client has been opened with the inquiry details." });
-      setFormData({ name: "", email: "", phone: "", location: "", subject: "", message: "" });
+
+      const tempLink = document.createElement("a");
+      tempLink.href = mailtoLink;
+      tempLink.target = "_blank";
+      tempLink.rel = "noopener noreferrer";
+      tempLink.style.display = "none";
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+
+      toast({ title: "Email draft opened", description: "Please press Send in your mail app." });
     } catch (error) {
       console.error("Form submission error:", error);
-      toast({ title: "Error", description: "Something went wrong. Please try again." });
+      toast({ title: "Error", description: "Could not open your mail app. Please try again." });
     }
   };
 
