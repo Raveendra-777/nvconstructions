@@ -12,6 +12,21 @@ const images = [
   { src: renovationImg, title: "Interior Renovation", category: "Renovation" },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.85, rotate: -2 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
+  },
+};
+
 const Gallery = () => {
   return (
     <>
@@ -37,28 +52,52 @@ const Gallery = () => {
 
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {images.map((img, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative rounded-xl overflow-hidden border border-border aspect-[4/3]"
+                variants={imageVariants}
+                whileHover={{ scale: 1.03, rotate: 0.5 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="group relative rounded-xl overflow-hidden border border-border aspect-[4/3] cursor-pointer"
               >
-                <img
+                <motion.img
                   src={img.src}
                   alt={img.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.7 }}
                 />
-                <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center">
-                  <span className="text-xs text-primary tracking-widest uppercase mb-1">{img.category}</span>
-                  <h3 className="text-xl font-heading font-bold text-foreground">{img.title}</h3>
-                </div>
+                <motion.div
+                  className="absolute inset-0 bg-background/70 flex flex-col items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.span
+                    className="text-xs text-primary tracking-widest uppercase mb-1"
+                    initial={{ y: 10 }}
+                    whileHover={{ y: 0 }}
+                  >
+                    {img.category}
+                  </motion.span>
+                  <motion.h3
+                    className="text-xl font-heading font-bold text-foreground"
+                    initial={{ y: 10 }}
+                    whileHover={{ y: 0 }}
+                  >
+                    {img.title}
+                  </motion.h3>
+                </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

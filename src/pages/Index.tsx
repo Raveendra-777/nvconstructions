@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Building2, Home as HomeIcon, Paintbrush, Shield, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import residentialImg from "@/assets/residential.jpg";
 import commercialImg from "@/assets/commercial.jpg";
 import renovationImg from "@/assets/renovation.jpg";
+import { useRef, useEffect, useState } from "react";
 
 const services = [
   {
@@ -30,24 +31,83 @@ const services = [
 ];
 
 const stats = [
-  { icon: Shield, value: "5+", label: "Years Experience" },
-  { icon: Building2, value: "50+", label: "Projects Completed" },
-  { icon: Users, value: "100+", label: "Happy Clients" },
-  { icon: Clock, value: "100%", label: "On-Time Delivery" },
+  { icon: Shield, value: 5, suffix: "+", label: "Years Experience" },
+  { icon: Building2, value: 50, suffix: "+", label: "Projects Completed" },
+  { icon: Users, value: 100, suffix: "+", label: "Happy Clients" },
+  { icon: Clock, value: 100, suffix: "%", label: "On-Time Delivery" },
 ];
 
+const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let _start = 0;
+          const duration = 1500;
+          const startTime = performance.now();
+          const animate = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(eased * value));
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
+
+  return (
+    <p ref={ref} className="text-3xl font-heading font-bold text-foreground">
+      {count}{suffix}
+    </p>
+  );
+};
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+};
+
 const Index = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroBg} alt="Construction site" className="w-full h-full object-cover" />
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <motion.div className="absolute inset-0" style={{ y: heroY }}>
+          <img src={heroBg} alt="Construction site" className="w-full h-full object-cover scale-110" />
           <div className="absolute inset-0 bg-background/80" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        </div>
+        </motion.div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center">
+        <motion.div
+          className="relative z-10 container mx-auto px-4 text-center"
+          style={{ opacity: heroOpacity }}
+        >
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,28 +149,49 @@ const Index = () => {
               <Link to="/profile">View Profile <ArrowRight className="ml-2 w-4 h-4" /></Link>
             </Button>
           </motion.div>
-        </div>
+        </motion.div>
+
+        {/* Floating decorative elements */}
+        <motion.div
+          className="absolute top-20 left-10 w-20 h-20 border border-primary/20 rounded-full"
+          animate={{ y: [0, -15, 0], rotate: [0, 90, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-32 right-16 w-12 h-12 bg-primary/10 rounded-lg"
+          animate={{ y: [0, 20, 0], rotate: [0, -45, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
       </section>
 
       {/* Stats */}
       <section className="py-16 bg-card border-y border-border">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, i) => (
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {stats.map((stat) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
+                variants={itemVariants}
+                className="text-center group"
+                whileHover={{ scale: 1.05 }}
               >
-                <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <p className="text-3xl font-heading font-bold text-foreground">{stat.value}</p>
+                <motion.div
+                  whileHover={{ rotate: 10, scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+                </motion.div>
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -122,41 +203,63 @@ const Index = () => {
             title="Our Services"
             description="We deliver excellence across residential, commercial, and renovation projects."
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, i) => (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {services.map((service) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 shadow-gold/0 hover:shadow-gold"
+                variants={itemVariants}
+                whileHover={{ y: -8 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 shadow-gold/0 hover:shadow-gold-lg"
               >
                 <div className="h-52 overflow-hidden">
-                  <img
+                  <motion.img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
                   />
                 </div>
                 <div className="p-6">
-                  <service.icon className="w-10 h-10 text-primary mb-4" />
+                  <motion.div whileHover={{ rotate: -10 }} transition={{ type: "spring" }}>
+                    <service.icon className="w-10 h-10 text-primary mb-4" />
+                  </motion.div>
                   <h3 className="text-xl font-heading font-semibold text-foreground mb-2">{service.title}</h3>
                   <p className="text-muted-foreground text-sm">{service.description}</p>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-card border-y border-border">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 bg-card border-y border-border relative overflow-hidden">
+        {/* Animated background shapes */}
+        <motion.div
+          className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute -bottom-10 -right-10 w-52 h-52 bg-primary/5 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.2, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
               Ready to Build Your <span className="text-gradient-gold">Dream?</span>
@@ -164,9 +267,11 @@ const Index = () => {
             <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
               Let's discuss your project. Get a free consultation from our expert team.
             </p>
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-10">
-              <Link to="/contact">Contact Us Today</Link>
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-10">
+                <Link to="/contact">Contact Us Today</Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>

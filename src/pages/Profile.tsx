@@ -21,6 +21,16 @@ const documents = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, rotateX: 5 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
+
 const Profile = () => {
   return (
     <>
@@ -47,27 +57,38 @@ const Profile = () => {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <SectionHeading subtitle="Documents" title="Our Credentials" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {documents.map((doc, i) => (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {documents.map((doc) => (
               <motion.div
                 key={doc.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="bg-card border border-border rounded-xl p-8 hover:border-primary/40 transition-all duration-500 flex flex-col items-center text-center"
+                variants={cardVariants}
+                whileHover={{ y: -8 }}
+                className="bg-card border border-border rounded-xl p-8 hover:border-primary/40 transition-all duration-500 flex flex-col items-center text-center hover:shadow-gold-lg"
               >
-                <FileText className="w-12 h-12 text-primary mb-4" />
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <FileText className="w-12 h-12 text-primary mb-4" />
+                </motion.div>
                 <h3 className="text-lg font-heading font-semibold text-foreground mb-2">{doc.title}</h3>
                 <p className="text-sm text-muted-foreground mb-6 flex-1">{doc.description}</p>
-                <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <a href={doc.url} target="_blank" rel="noopener noreferrer">
-                    View Document <ExternalLink className="ml-2 w-4 h-4" />
-                  </a>
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    <a href={doc.url} target="_blank" rel="noopener noreferrer">
+                      View Document <ExternalLink className="ml-2 w-4 h-4" />
+                    </a>
+                  </Button>
+                </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

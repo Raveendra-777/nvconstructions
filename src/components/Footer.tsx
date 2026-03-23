@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-heading font-bold text-gradient-gold mb-4">
@@ -31,7 +38,7 @@ const Footer = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all duration-300"
                 >
                   {link.label}
                 </Link>
@@ -43,12 +50,12 @@ const Footer = () => {
           <div>
             <h4 className="text-primary font-heading font-semibold mb-4">Contact Info</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:+919844052227" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
-                <Phone className="w-4 h-4 text-primary" />
+              <a href="tel:+919844052227" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors group">
+                <Phone className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
                 +91 9844052227
               </a>
-              <a href="mailto:nikhilvarmaconstructions09@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
-                <Mail className="w-4 h-4 text-primary" />
+              <a href="mailto:nikhilvarmaconstructions09@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors group">
+                <Mail className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
                 nikhilvarmaconstructions09@gmail.com
               </a>
               <div className="flex items-start gap-3 text-sm text-muted-foreground">
@@ -57,8 +64,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
-
+        </motion.div>
       </div>
     </footer>
   );
