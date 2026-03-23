@@ -9,6 +9,16 @@ const openings = [
   { title: "Civil Supervisor", location: "Multiple Locations", type: "Full-time" },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } },
+};
+
 const Career = () => {
   return (
     <>
@@ -35,15 +45,19 @@ const Career = () => {
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-3xl">
           <SectionHeading subtitle="Opportunities" title="Current Openings" />
-          <div className="space-y-6">
-            {openings.map((job, i) => (
+          <motion.div
+            className="space-y-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {openings.map((job) => (
               <motion.div
                 key={job.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-500 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                variants={cardVariants}
+                whileHover={{ y: -4, borderColor: "hsl(42 55% 55% / 0.4)" }}
+                className="bg-card border border-border rounded-xl p-6 transition-all duration-500 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:shadow-gold"
               >
                 <div>
                   <h3 className="text-lg font-heading font-semibold text-foreground mb-2">{job.title}</h3>
@@ -52,31 +66,42 @@ const Career = () => {
                     <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-primary" />{job.type}</span>
                   </div>
                 </div>
-                <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground shrink-0">
-                  <a href="mailto:nikhilvarmaconstructions09@gmail.com?subject=Application for {job.title}">
-                    Apply Now
-                  </a>
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground shrink-0">
+                    <a href={`mailto:nikhilvarmaconstructions09@gmail.com?subject=Application for ${job.title}`}>
+                      Apply Now
+                    </a>
+                  </Button>
+                </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mt-16 text-center bg-card border border-border rounded-xl p-10"
+            transition={{ duration: 0.5 }}
+            whileHover={{ borderColor: "hsl(42 55% 55% / 0.4)" }}
+            className="mt-16 text-center bg-card border border-border rounded-xl p-10 transition-all duration-500 hover:shadow-gold-lg"
           >
-            <Briefcase className="w-10 h-10 text-primary mx-auto mb-4" />
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Briefcase className="w-10 h-10 text-primary mx-auto mb-4" />
+            </motion.div>
             <h3 className="text-xl font-heading font-semibold text-foreground mb-2">Don't see your role?</h3>
             <p className="text-muted-foreground text-sm mb-6">
               Send us your resume and we'll keep you in mind for future openings.
             </p>
-            <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark">
-              <a href="mailto:nikhilvarmaconstructions09@gmail.com?subject=General Application">
-                Send Your Resume
-              </a>
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-gold-dark">
+                <a href="mailto:nikhilvarmaconstructions09@gmail.com?subject=General Application">
+                  Send Your Resume
+                </a>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>

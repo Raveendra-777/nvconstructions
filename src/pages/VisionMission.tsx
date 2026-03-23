@@ -2,11 +2,26 @@ import { motion } from "framer-motion";
 import { Eye, Rocket, CheckCircle } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
+const goalVariants = {
+  hidden: { opacity: 0, x: -30, scale: 0.95 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { delay: i * 0.12, duration: 0.5, ease: "easeOut" },
+  }),
+};
+
 const VisionMission = () => {
   return (
     <>
-      <section className="py-24 bg-gradient-navy">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 bg-gradient-navy relative overflow-hidden">
+        <motion.div
+          className="absolute -bottom-20 -left-20 w-60 h-60 bg-primary/5 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 7, repeat: Infinity }}
+        />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -22,12 +37,19 @@ const VisionMission = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Vision */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: -40, rotateY: 5 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
               viewport={{ once: true }}
-              className="bg-card border border-border rounded-xl p-10 hover:border-primary/40 transition-all duration-500"
+              transition={{ duration: 0.6 }}
+              whileHover={{ y: -6 }}
+              className="bg-card border border-border rounded-xl p-10 hover:border-primary/40 transition-all duration-500 hover:shadow-gold-lg"
             >
-              <Eye className="w-12 h-12 text-primary mb-6" />
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Eye className="w-12 h-12 text-primary mb-6" />
+              </motion.div>
               <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Our Vision</h2>
               <p className="text-muted-foreground leading-relaxed">
                 To be recognized as the most trusted and innovative construction company in India, 
@@ -38,12 +60,19 @@ const VisionMission = () => {
 
             {/* Mission */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 40, rotateY: -5 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
               viewport={{ once: true }}
-              className="bg-card border border-border rounded-xl p-10 hover:border-primary/40 transition-all duration-500"
+              transition={{ duration: 0.6, delay: 0.15 }}
+              whileHover={{ y: -6 }}
+              className="bg-card border border-border rounded-xl p-10 hover:border-primary/40 transition-all duration-500 hover:shadow-gold-lg"
             >
-              <Rocket className="w-12 h-12 text-primary mb-6" />
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              >
+                <Rocket className="w-12 h-12 text-primary mb-6" />
+              </motion.div>
               <h2 className="text-2xl font-heading font-bold text-foreground mb-4">Our Mission</h2>
               <p className="text-muted-foreground leading-relaxed">
                 To deliver exceptional construction services with unwavering commitment to quality, 
@@ -66,13 +95,17 @@ const VisionMission = () => {
               ].map((goal, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  custom={i}
+                  variants={goalVariants}
+                  initial="hidden"
+                  whileInView="visible"
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-4 bg-card rounded-lg border border-border"
+                  whileHover={{ x: 6, backgroundColor: "hsl(220 28% 14%)" }}
+                  className="flex items-start gap-4 p-4 bg-card rounded-lg border border-border transition-all duration-300 cursor-default"
                 >
-                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.4 }}>
+                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  </motion.div>
                   <p className="text-foreground text-sm">{goal}</p>
                 </motion.div>
               ))}
