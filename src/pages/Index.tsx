@@ -47,7 +47,7 @@ const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) =
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          let start = 0;
+          let _start = 0;
           const duration = 1500;
           const startTime = performance.now();
           const animate = (now: number) => {

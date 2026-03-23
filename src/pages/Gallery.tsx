@@ -23,7 +23,7 @@ const imageVariants = {
     opacity: 1,
     scale: 1,
     rotate: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 

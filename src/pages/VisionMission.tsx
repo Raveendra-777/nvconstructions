@@ -8,7 +8,7 @@ const goalVariants = {
     opacity: 1,
     x: 0,
     scale: 1,
-    transition: { delay: i * 0.12, duration: 0.5, ease: "easeOut" },
+    transition: { delay: i * 0.12, duration: 0.5, ease: "easeOut" as const },
   }),
 };
 
