@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import PageBanner from "@/components/PageBanner";
+import contactHero from "@/assets/contact-hero.jpg";
 
 const locations = ["Bangalore", "Mysore", "Hubli", "Davangere", "Shimogga", "Udupi", "Mangalore", "Bagalkote", "Chennai", "Other Cities"];
 
@@ -16,15 +18,8 @@ const contactItems = [
   { icon: MessageCircle, label: "WhatsApp", value: "Chat with us", href: "https://api.whatsapp.com/send/?phone=9844052227&text&type=phone_number&app_absent=0", external: true },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-};
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+const itemVariants = { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.4 } } };
 
 const Contact = () => {
   const { toast } = useToast();
@@ -34,7 +29,6 @@ const Contact = () => {
     e.preventDefault();
     try {
       const mailtoLink = `mailto:nikhilvarmaconstructions09@gmail.com?subject=${encodeURIComponent(formData.subject || "Website Inquiry")}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nLocation: ${formData.location}\n\n${formData.message}`)}`;
-
       const tempLink = document.createElement("a");
       tempLink.href = mailtoLink;
       tempLink.target = "_blank";
@@ -43,7 +37,6 @@ const Contact = () => {
       document.body.appendChild(tempLink);
       tempLink.click();
       document.body.removeChild(tempLink);
-
       toast({ title: "Email draft opened", description: "Please press Send in your mail app." });
     } catch (error) {
       console.error("Form submission error:", error);
@@ -53,17 +46,7 @@ const Contact = () => {
 
   return (
     <>
-      <section className="py-24 bg-gradient-navy">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4"
-          >
-            Contact <span className="text-gradient-gold">Us</span>
-          </motion.h1>
-        </div>
-      </section>
+      <PageBanner image={contactHero} title="Contact" highlight="Us" subtitle="Have a project in mind? Let's talk" />
 
       <section className="py-24">
         <div className="container mx-auto px-4">
