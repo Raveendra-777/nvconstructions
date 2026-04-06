@@ -3,31 +3,16 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Building2, Home as HomeIcon, Paintbrush, Shield, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
-import heroBg from "@/assets/hero-bg.jpg";
+import HeroSlider from "@/components/HeroSlider";
 import residentialImg from "@/assets/residential.jpg";
 import commercialImg from "@/assets/commercial.jpg";
 import renovationImg from "@/assets/renovation.jpg";
 import { useRef, useEffect, useState } from "react";
 
 const services = [
-  {
-    icon: HomeIcon,
-    title: "Residential Projects",
-    description: "Modern, durable, and beautifully designed homes tailored to your needs.",
-    image: residentialImg,
-  },
-  {
-    icon: Building2,
-    title: "Commercial Buildings",
-    description: "Strong infrastructure for offices, complexes, and retail spaces.",
-    image: commercialImg,
-  },
-  {
-    icon: Paintbrush,
-    title: "Renovations",
-    description: "Transforming old spaces into modern and functional designs.",
-    image: renovationImg,
-  },
+  { icon: HomeIcon, title: "Residential Projects", description: "Modern, durable, and beautifully designed homes tailored to your needs.", image: residentialImg },
+  { icon: Building2, title: "Commercial Buildings", description: "Strong infrastructure for offices, complexes, and retail spaces.", image: commercialImg },
+  { icon: Paintbrush, title: "Renovations", description: "Transforming old spaces into modern and functional designs.", image: renovationImg },
 ];
 
 const stats = [
@@ -47,7 +32,6 @@ const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) =
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          let _start = 0;
           const duration = 1500;
           const startTime = performance.now();
           const animate = (now: number) => {
@@ -73,118 +57,21 @@ const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) =
   );
 };
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.15 } } };
+const itemVariants = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } } };
 
 const Index = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   return (
     <>
-      {/* Hero */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <motion.div className="absolute inset-0" style={{ y: heroY }}>
-          <img src={heroBg} alt="Construction site" className="w-full h-full object-cover scale-110" />
-          <div className="absolute inset-0 bg-background/80" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        </motion.div>
-
-        <motion.div
-          className="relative z-10 container mx-auto px-4 text-center"
-          style={{ opacity: heroOpacity }}
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-primary tracking-[0.3em] uppercase text-sm font-medium mb-4"
-          >
-            Building Trust
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-foreground leading-tight mb-6"
-          >
-            Raising Standards in
-            <br />
-            <span className="text-gradient-gold">Construction</span>
-            <br />
-            Since 2020
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="text-muted-foreground text-lg max-w-xl mx-auto mb-8"
-          >
-            Quality construction you can trust with Nikhil Varma Constructions
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8">
-              <Link to="/contact">Get in Touch</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8">
-              <Link to="/profile">View Profile <ArrowRight className="ml-2 w-4 h-4" /></Link>
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Floating decorative elements */}
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 border border-primary/20 rounded-full"
-          animate={{ y: [0, -15, 0], rotate: [0, 90, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-32 right-16 w-12 h-12 bg-primary/10 rounded-lg"
-          animate={{ y: [0, 20, 0], rotate: [0, -45, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </section>
+      <HeroSlider />
 
       {/* Stats */}
       <section className="py-16 bg-card border-y border-border">
         <div className="container mx-auto px-4">
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {stats.map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={itemVariants}
-                className="text-center group"
-                whileHover={{ scale: 1.05 }}
-              >
-                <motion.div
-                  whileHover={{ rotate: 10, scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+              <motion.div key={stat.label} variants={itemVariants} className="text-center group" whileHover={{ scale: 1.05 }}>
+                <motion.div whileHover={{ rotate: 10, scale: 1.2 }} transition={{ type: "spring", stiffness: 300 }}>
                   <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
                 </motion.div>
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
@@ -198,34 +85,12 @@ const Index = () => {
       {/* Services */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <SectionHeading
-            subtitle="What We Do"
-            title="Our Services"
-            description="We deliver excellence across residential, commercial, and renovation projects."
-          />
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <SectionHeading subtitle="What We Do" title="Our Services" description="We deliver excellence across residential, commercial, and renovation projects." />
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {services.map((service) => (
-              <motion.div
-                key={service.title}
-                variants={itemVariants}
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 shadow-gold/0 hover:shadow-gold-lg"
-              >
+              <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300 }} className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 shadow-gold/0 hover:shadow-gold-lg">
                 <div className="h-52 overflow-hidden">
-                  <motion.img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  />
+                  <motion.img src={service.image} alt={service.title} className="w-full h-full object-cover" whileHover={{ scale: 1.1 }} transition={{ duration: 0.6 }} />
                 </div>
                 <div className="p-6">
                   <motion.div whileHover={{ rotate: -10 }} transition={{ type: "spring" }}>
@@ -242,31 +107,14 @@ const Index = () => {
 
       {/* CTA */}
       <section className="py-24 bg-card border-y border-border relative overflow-hidden">
-        {/* Animated background shapes */}
-        <motion.div
-          className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 5, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute -bottom-10 -right-10 w-52 h-52 bg-primary/5 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.2, 0.4] }}
-          transition={{ duration: 6, repeat: Infinity }}
-        />
-
+        <motion.div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 5, repeat: Infinity }} />
+        <motion.div className="absolute -bottom-10 -right-10 w-52 h-52 bg-primary/5 rounded-full blur-3xl" animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.2, 0.4] }} transition={{ duration: 6, repeat: Infinity }} />
         <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
               Ready to Build Your <span className="text-gradient-gold">Dream?</span>
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
-              Let's discuss your project. Get a free consultation from our expert team.
-            </p>
+            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">Let's discuss your project. Get a free consultation from our expert team.</p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-10">
                 <Link to="/contact">Contact Us Today</Link>

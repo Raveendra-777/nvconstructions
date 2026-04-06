@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Briefcase, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
+import PageBanner from "@/components/PageBanner";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const openings = [
   { title: "Site Engineer", location: "Bangalore", type: "Full-time" },
@@ -9,38 +11,13 @@ const openings = [
   { title: "Civil Supervisor", location: "Multiple Locations", type: "Full-time" },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } },
-};
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
+const cardVariants = { hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5 } } };
 
 const Career = () => {
   return (
     <>
-      <section className="py-24 bg-gradient-navy">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4"
-          >
-            Join Our <span className="text-gradient-gold">Team</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-muted-foreground max-w-2xl mx-auto"
-          >
-            Build your career while building landmarks
-          </motion.p>
-        </div>
-      </section>
+      <PageBanner image={heroBg} title="Join Our" highlight="Team" subtitle="Build your career while building landmarks" />
 
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-3xl">

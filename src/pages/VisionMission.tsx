@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Eye, Rocket, CheckCircle } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import PageBanner from "@/components/PageBanner";
+import commercialImg from "@/assets/commercial.jpg";
 
 const goalVariants = {
   hidden: { opacity: 0, x: -30, scale: 0.95 },
@@ -15,22 +17,7 @@ const goalVariants = {
 const VisionMission = () => {
   return (
     <>
-      <section className="py-24 bg-gradient-navy relative overflow-hidden">
-        <motion.div
-          className="absolute -bottom-20 -left-20 w-60 h-60 bg-primary/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 7, repeat: Infinity }}
-        />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4"
-          >
-            Vision & <span className="text-gradient-gold">Mission</span>
-          </motion.h1>
-        </div>
-      </section>
+      <PageBanner image={commercialImg} title="Vision &" highlight="Mission" />
 
       <section className="py-24">
         <div className="container mx-auto px-4">

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Award, Target, Handshake, HardHat } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import PageBanner from "@/components/PageBanner";
+import aboutHero from "@/assets/about-hero.jpg";
 
 const values = [
   { icon: Award, title: "Quality", description: "We use only the finest materials and techniques to ensure lasting results." },
@@ -31,38 +33,7 @@ const textRevealVariants = {
 const About = () => {
   return (
     <>
-      {/* Hero */}
-      <section className="py-24 bg-gradient-navy relative overflow-hidden">
-        <motion.div
-          className="absolute top-10 right-10 w-32 h-32 border border-primary/10 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4"
-          >
-            About <span className="text-gradient-gold">Us</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-muted-foreground max-w-2xl mx-auto"
-          >
-            Building dreams and creating landmarks since 2020
-          </motion.p>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-4 mx-auto h-1 w-16 bg-primary rounded-full origin-center"
-          />
-        </div>
-      </section>
+      <PageBanner image={aboutHero} title="About" highlight="Us" subtitle="Building dreams and creating landmarks since 2020" />
 
       {/* Story */}
       <section className="py-24">
