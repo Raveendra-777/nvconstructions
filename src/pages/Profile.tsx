@@ -34,7 +34,7 @@ const cardVariants = {
 const Profile = () => {
   return (
     <>
-      <section className="py-24 bg-gradient-navy">
+      <section className="py-24 glass-subtle border-b border-border/30">
         <div className="container mx-auto px-4 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ const Profile = () => {
                 key={doc.title}
                 variants={cardVariants}
                 whileHover={{ y: -8 }}
-                className="bg-card border border-border rounded-xl p-8 hover:border-primary/40 transition-all duration-500 flex flex-col items-center text-center hover:shadow-gold-lg"
+                className="glass-card p-8 flex flex-col items-center text-center"
               >
                 <motion.div
                   animate={{ y: [0, -5, 0] }}

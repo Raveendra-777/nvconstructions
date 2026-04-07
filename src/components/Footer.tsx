@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="glass border-t border-border/30">
       <div className="container mx-auto px-4 lg:px-8 py-16">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-12"
@@ -13,7 +13,6 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Brand */}
           <div>
             <h3 className="text-2xl font-heading font-bold text-gradient-gold mb-4">
               Nikhil Varma Constructions
@@ -24,7 +23,6 @@ const Footer = () => {
             <p className="text-xs text-muted-foreground">GSTIN: 29AARFN8171E1ZQ</p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="text-primary font-heading font-semibold mb-4">Quick Links</h4>
             <div className="flex flex-col gap-2">
@@ -46,7 +44,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-primary font-heading font-semibold mb-4">Contact Info</h4>
             <div className="flex flex-col gap-3">

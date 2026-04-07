@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Building2, Home as HomeIcon, Paintbrush, Shield, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -66,7 +66,7 @@ const Index = () => {
       <HeroSlider />
 
       {/* Stats */}
-      <section className="py-16 bg-card border-y border-border">
+      <section className="py-16 glass-subtle border-y border-border/30">
         <div className="container mx-auto px-4">
           <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {stats.map((stat) => (
@@ -88,7 +88,7 @@ const Index = () => {
           <SectionHeading subtitle="What We Do" title="Our Services" description="We deliver excellence across residential, commercial, and renovation projects." />
           <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {services.map((service) => (
-              <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300 }} className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 transition-all duration-500 shadow-gold/0 hover:shadow-gold-lg">
+              <motion.div key={service.title} variants={itemVariants} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300 }} className="group glass-card overflow-hidden">
                 <div className="h-52 overflow-hidden">
                   <motion.img src={service.image} alt={service.title} className="w-full h-full object-cover" whileHover={{ scale: 1.1 }} transition={{ duration: 0.6 }} />
                 </div>
@@ -106,9 +106,9 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-card border-y border-border relative overflow-hidden">
-        <motion.div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 5, repeat: Infinity }} />
-        <motion.div className="absolute -bottom-10 -right-10 w-52 h-52 bg-primary/5 rounded-full blur-3xl" animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.2, 0.4] }} transition={{ duration: 6, repeat: Infinity }} />
+      <section className="py-24 glass-subtle border-y border-border/30 relative overflow-hidden">
+        <motion.div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl" animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 5, repeat: Infinity }} />
+        <motion.div className="absolute -bottom-10 -right-10 w-52 h-52 bg-primary/10 rounded-full blur-3xl" animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.2, 0.4] }} transition={{ duration: 6, repeat: Infinity }} />
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">

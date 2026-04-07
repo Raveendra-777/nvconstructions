@@ -33,8 +33,8 @@ const Career = () => {
               <motion.div
                 key={job.title}
                 variants={cardVariants}
-                whileHover={{ y: -4, borderColor: "hsl(42 55% 55% / 0.4)" }}
-                className="bg-card border border-border rounded-xl p-6 transition-all duration-500 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:shadow-gold"
+                whileHover={{ y: -4 }}
+                className="glass-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               >
                 <div>
                   <h3 className="text-lg font-heading font-semibold text-foreground mb-2">{job.title}</h3>
@@ -59,8 +59,7 @@ const Career = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            whileHover={{ borderColor: "hsl(42 55% 55% / 0.4)" }}
-            className="mt-16 text-center bg-card border border-border rounded-xl p-10 transition-all duration-500 hover:shadow-gold-lg"
+            className="mt-16 text-center glass-card p-10"
           >
             <motion.div
               animate={{ y: [0, -5, 0] }}

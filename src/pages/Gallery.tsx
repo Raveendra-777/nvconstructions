@@ -53,17 +53,17 @@ const Gallery = () => {
                 variants={imageVariants}
                 whileHover={{ scale: 1.03, rotate: 0.5 }}
                 transition={{ type: "spring", stiffness: 200 }}
-                className="group relative rounded-xl overflow-hidden border border-border aspect-[4/3] cursor-pointer"
+                className="group relative glass-card overflow-hidden aspect-[4/3] cursor-pointer p-0"
               >
                 <motion.img
                   src={img.src}
                   alt={img.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-xl"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.7 }}
                 />
                 <motion.div
-                  className="absolute inset-0 bg-background/70 flex flex-col items-center justify-center"
+                  className="absolute inset-0 glass rounded-xl flex flex-col items-center justify-center"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
