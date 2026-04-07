@@ -35,7 +35,6 @@ const About = () => {
     <>
       <PageBanner image={aboutHero} title="About" highlight="Us" subtitle="Building dreams and creating landmarks since 2020" />
 
-      {/* Story */}
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
@@ -62,8 +61,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-24 bg-card border-y border-border">
+      <section className="py-24 glass-subtle border-y border-border/30">
         <div className="container mx-auto px-4">
           <SectionHeading subtitle="What Drives Us" title="Our Core Values" />
           <motion.div
@@ -77,8 +75,7 @@ const About = () => {
               <motion.div
                 key={v.title}
                 variants={cardVariants}
-                whileHover={{ y: -8, borderColor: "hsl(42 55% 55% / 0.4)" }}
-                className="text-center p-8 rounded-xl bg-background border border-border transition-all duration-500"
+                className="text-center p-8 glass-card"
               >
                 <motion.div
                   whileHover={{ rotate: -15, scale: 1.2 }}

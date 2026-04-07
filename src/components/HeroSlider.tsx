@@ -62,8 +62,8 @@ const HeroSlider = () => {
             alt={slides[current].title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-foreground/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-foreground/30" />
+          <div className="absolute inset-0 bg-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
         </motion.div>
       </AnimatePresence>
 
@@ -77,54 +77,58 @@ const HeroSlider = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
             >
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="tracking-[0.3em] uppercase text-sm font-medium mb-4"
-                style={{ color: "hsl(42 60% 65%)" }}
-              >
-                {slides[current].subtitle}
-              </motion.p>
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6"
-                style={{ color: "white" }}
-              >
-                {slides[current].title}
-                <br />
-                <span className="text-gradient-gold">{slides[current].highlight}</span>
-                <br />
-                {slides[current].after}
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="text-lg max-w-xl mx-auto mb-8"
-                style={{ color: "rgba(255,255,255,0.8)" }}
-              >
-                {slides[current].description}
-              </motion.p>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                className="inline-block glass px-12 py-10 rounded-3xl"
               >
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8">
-                  <Link to="/contact">Get in Touch</Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-white/40 text-white hover:bg-white/10 font-semibold px-8"
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="tracking-[0.3em] uppercase text-sm font-medium mb-4 text-primary"
                 >
-                  <Link to="/profile">View Profile</Link>
-                </Button>
+                  {slides[current].subtitle}
+                </motion.p>
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6 text-foreground"
+                >
+                  {slides[current].title}
+                  <br />
+                  <span className="text-gradient-gold">{slides[current].highlight}</span>
+                  <br />
+                  {slides[current].after}
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="text-lg max-w-xl mx-auto mb-8 text-muted-foreground"
+                >
+                  {slides[current].description}
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                >
+                  <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-gold-dark font-semibold px-8">
+                    <Link to="/contact">Get in Touch</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="border-border/60 text-foreground hover:glass-gold font-semibold px-8"
+                  >
+                    <Link to="/profile">View Profile</Link>
+                  </Button>
+                </motion.div>
               </motion.div>
             </motion.div>
           </AnimatePresence>
@@ -134,15 +138,15 @@ const HeroSlider = () => {
       {/* Navigation arrows */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glass flex items-center justify-center hover:glass-gold transition-all"
       >
-        <ChevronLeft className="w-6 h-6 text-white" />
+        <ChevronLeft className="w-6 h-6 text-foreground" />
       </button>
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glass flex items-center justify-center hover:glass-gold transition-all"
       >
-        <ChevronRight className="w-6 h-6 text-white" />
+        <ChevronRight className="w-6 h-6 text-foreground" />
       </button>
 
       {/* Dots */}
@@ -152,7 +156,7 @@ const HeroSlider = () => {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              i === current ? "w-8 bg-primary" : "w-2 bg-white/40"
+              i === current ? "w-8 bg-primary" : "w-2 bg-foreground/30"
             }`}
           />
         ))}

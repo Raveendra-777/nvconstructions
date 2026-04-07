@@ -51,7 +51,6 @@ const Contact = () => {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
-            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -82,7 +81,7 @@ const Contact = () => {
                     <motion.div key={item.label} variants={itemVariants}>
                       <Wrapper {...(wrapperProps as any)} className="flex items-center gap-4 group">
                         <motion.div
-                          className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-colors"
+                          className="w-12 h-12 rounded-lg glass-gold flex items-center justify-center"
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
@@ -99,7 +98,6 @@ const Contact = () => {
               </motion.div>
             </motion.div>
 
-            {/* Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -108,19 +106,17 @@ const Contact = () => {
             >
               <motion.form
                 onSubmit={handleSubmit}
-                className="bg-card border border-border rounded-xl p-8 space-y-5"
-                whileHover={{ borderColor: "hsl(42 55% 55% / 0.3)" }}
-                transition={{ duration: 0.3 }}
+                className="glass-card p-8 space-y-5"
               >
-                <Input placeholder="Your Name" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="bg-secondary border-border focus:border-primary" />
-                <Input type="email" placeholder="Email Address" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="bg-secondary border-border focus:border-primary" />
-                <Input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="bg-secondary border-border focus:border-primary" />
+                <Input placeholder="Your Name" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="bg-muted/50 border-border/50 focus:border-primary backdrop-blur-sm" />
+                <Input type="email" placeholder="Email Address" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="bg-muted/50 border-border/50 focus:border-primary backdrop-blur-sm" />
+                <Input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="bg-muted/50 border-border/50 focus:border-primary backdrop-blur-sm" />
                 <Select onValueChange={(val) => setFormData({ ...formData, location: val })}>
-                  <SelectTrigger className="bg-secondary border-border"><SelectValue placeholder="Select Location" /></SelectTrigger>
-                  <SelectContent>{locations.map((loc) => (<SelectItem key={loc} value={loc}>{loc}</SelectItem>))}</SelectContent>
+                  <SelectTrigger className="bg-muted/50 border-border/50 backdrop-blur-sm"><SelectValue placeholder="Select Location" /></SelectTrigger>
+                  <SelectContent className="glass">{locations.map((loc) => (<SelectItem key={loc} value={loc}>{loc}</SelectItem>))}</SelectContent>
                 </Select>
-                <Input placeholder="Subject" value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className="bg-secondary border-border focus:border-primary" />
-                <Textarea placeholder="Your Message" rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="bg-secondary border-border focus:border-primary" />
+                <Input placeholder="Subject" value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className="bg-muted/50 border-border/50 focus:border-primary backdrop-blur-sm" />
+                <Textarea placeholder="Your Message" rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="bg-muted/50 border-border/50 focus:border-primary backdrop-blur-sm" />
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                   <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-gold-dark font-semibold">
                     Send Message
