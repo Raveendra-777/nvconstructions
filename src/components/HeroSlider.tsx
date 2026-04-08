@@ -62,8 +62,8 @@ const HeroSlider = () => {
             alt={slides[current].title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-background/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
+          <div className="absolute inset-0 bg-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-background/20" />
         </motion.div>
       </AnimatePresence>
 

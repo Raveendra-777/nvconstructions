@@ -11,8 +11,8 @@ const PageBanner = ({ image, title, highlight, subtitle }: PageBannerProps) => (
   <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
     <div className="absolute inset-0">
       <img src={image} alt={title} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-background/60" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+      <div className="absolute inset-0 bg-background/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent" />
     </div>
     <div className="relative z-10 container mx-auto px-4 text-center">
       <motion.div
