@@ -17,8 +17,7 @@ const Preloader = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-          style={{ background: "linear-gradient(135deg, hsl(220 40% 12%), hsl(220 35% 20%))" }}
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background"
         >
           <motion.img
             src={logo}
@@ -36,7 +35,7 @@ const Preloader = () => {
           >
             NV Constructions
           </motion.h2>
-          <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+          <div className="w-48 h-1 bg-foreground/10 rounded-full overflow-hidden">
             <motion.div
               className="h-full rounded-full"
               style={{ background: "linear-gradient(90deg, hsl(42 60% 65%), hsl(42 55% 50%))" }}
