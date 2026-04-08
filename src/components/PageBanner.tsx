@@ -21,10 +21,7 @@ const PageBanner = ({ image, title, highlight, subtitle }: PageBannerProps) => (
         transition={{ duration: 0.6 }}
         className="inline-block glass px-10 py-6 rounded-2xl"
       >
-        <h1
-          className="text-4xl md:text-5xl font-heading font-bold mb-2"
-          style={{ color: "white" }}
-        >
+        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-2 text-foreground">
           {title} <span className="text-gradient-gold">{highlight}</span>
         </h1>
         {subtitle && (

@@ -36,7 +36,7 @@ const Preloader = () => {
           >
             NV Constructions
           </motion.h2>
-          <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+          <div className="w-48 h-1 bg-foreground/10 rounded-full overflow-hidden">
             <motion.div
               className="h-full rounded-full"
               style={{ background: "linear-gradient(90deg, hsl(42 60% 65%), hsl(42 55% 50%))" }}
