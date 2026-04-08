@@ -7,17 +7,17 @@ const documents = [
   {
     title: "Company Profile",
     description: "Complete overview of Nikhil Varma Constructions, our capabilities, and project portfolio.",
-    url: "https://drive.google.com/file/d/13bERvOeviFmrDvkR1ZSYh2jLxTrHpFc3/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/1E5rs-hVSpgkK1B9q0iczhYkfPW5_MGbm/view?usp=sharing",
   },
   {
     title: "MSME Certificate",
     description: "Our MSME registration certificate validating our status as a recognized enterprise.",
-    url: "https://drive.google.com/file/d/1Dq8ft8OkQ1WINlyYJVxkdavla1o0PTyF/view",
+    url: "https://drive.google.com/file/d/1RZlpiRYGp72c6wkhGuiawlaOh5m3BqwY/view?usp=drive_link",
   },
   {
     title: "GST Certificate",
     description: "GST registration certificate — GSTIN: 29AARFN8171E1ZQ.",
-    url: "https://drive.google.com/file/d/1nkXLiYF4-q0eDSh01Ei7Ef5a82rrSuDv/view",
+    url: "https://drive.google.com/file/d/1NAchpYdAT1qDuiq-QfL38cuvjFDJF4Su/view?usp=drive_link",
   },
 ];
 
