@@ -17,8 +17,7 @@ const Preloader = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-          style={{ background: "linear-gradient(135deg, hsl(220 40% 12%), hsl(220 35% 20%))" }}
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background"
         >
           <motion.img
             src={logo}
