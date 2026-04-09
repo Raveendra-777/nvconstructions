@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, Target, Handshake, HardHat } from "lucide-react";
+import { Award, Target, Handshake, HardHat, BarChart} from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import PageBanner from "@/components/PageBanner";
 import aboutHero from "@/assets/about-hero.jpg";
@@ -7,23 +7,23 @@ import founder from "@/assets/Praveen.webp";
 
 
 const values = [
-  { title: "30+", description: "Projects Completed." },
-  { title: "40+", description: "Locations Across City." },
-  { title: "26+", description: "Years Of Expirence." },
+  { icon: BarChart, title: "30+", description: "Projects Completed." },
+  { icon: BarChart, title: "40+", description: "Locations Across City." },
+  { icon: BarChart, title: "26+", description: "Years Of Experience." },
   { icon: Award, title: "Quality", description: "We use only the finest materials and techniques to ensure lasting results." },
   { icon: Target, title: "Precision", description: "Every project is executed with meticulous attention to detail." },
   { icon: Handshake, title: "Trust", description: "Transparent communication and honest pricing are our hallmarks." },
   { icon: HardHat, title: "Safety", description: "We maintain the highest safety standards across all our sites." },
   
 ];
-const services = {
+const services = [
               "22+ Years Of Experience In The Construction Industry",
               "Founder Of Nikhil Varma Constructions Since 2020",
               "Strong Expertise In Planning And Project Execution",
               "Committed To Delivering Reliable And High-Quality Projects"
               
               
-              }
+              ];
 
 const containerVariants = {
   hidden: {},
