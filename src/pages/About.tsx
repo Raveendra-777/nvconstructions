@@ -3,6 +3,7 @@ import { Award, Target, Handshake, HardHat } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import PageBanner from "@/components/PageBanner";
 import aboutHero from "@/assets/about-hero.jpg";
+import founder from "@/assets/Praveen.webp";
 
 
 const values = [
@@ -58,7 +59,7 @@ const About = () => {
                 </motion.p>
               ))}
               <SectionHeading subtitle="Overview" title="Founder" />
-              <SectionHeading subtitle="– Founder & CEO" title="Mr.Praveen Kumar T.C" style="align:left;" />
+              <SectionHeading subtitle="– Founder & CEO" title="Mr.Praveen Kumar T.C" style={{textAlign:"left"}} />
               {[
                 "Founded under the leadership of Praveen Kumar, the company has grown steadily by emphasizing quality workmanship, transparency, and timely project completion. With a team of around 10–25 employees, the firm handles a wide range of civil engineering and construction projects.",
               ].map((text, i) => (
@@ -73,6 +74,12 @@ const About = () => {
                   {text}
                 </motion.p>
               ))}
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+              <img src={founder} alt="founder"></img>
+                <p className="text-muted-foreground">
+    Founded under the leadership of Praveen Kumar...
+  </p>
+              </div>
               
             </div>
           </div>
