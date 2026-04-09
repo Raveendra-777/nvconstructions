@@ -75,11 +75,16 @@ const About = () => {
                 </motion.p>
               ))}
               <div className="flex flex-col md:flex-row gap-8 items-center">
-              <img src={founder} alt="founder"></img>
-                <p className="text-muted-foreground">
+  <img 
+    src={founderImg} 
+    alt="Mr. Praveen Kumar" 
+    className="w-64 h-64 object-cover rounded-2xl"
+  />
+
+  <p className="text-muted-foreground">
     Founded under the leadership of Praveen Kumar...
   </p>
-              </div>
+</div>
               
             </div>
           </div>
