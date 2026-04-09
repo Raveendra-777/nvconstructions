@@ -16,6 +16,14 @@ const values = [
   { icon: HardHat, title: "Safety", description: "We maintain the highest safety standards across all our sites." },
   
 ];
+const services = {
+              "22+ Years Of Experience In The Construction Industry",
+              "Founder Of Nikhil Varma Constructions Since 2020",
+              "Strong Expertise In Planning And Project Execution",
+              "Committed To Delivering Reliable And High-Quality Projects"
+              
+              
+              }
 
 const containerVariants = {
   hidden: {},
@@ -89,14 +97,7 @@ const About = () => {
               ))}
   </p>
 </div>
-              const services = {
-              "22+ Years Of Experience In The Construction Industry",
-              "Founder Of Nikhil Varma Constructions Since 2020",
-              "Strong Expertise In Planning And Project Execution",
-              "Committed To Delivering Reliable And High-Quality Projects"
               
-              
-              }
               <ul className="list-disc pl-5 text-muted-foreground space-y-2">
   {services.map((item, i) => (
     <motion.li
