@@ -76,7 +76,7 @@ const About = () => {
               ))}
               <div className="flex flex-col md:flex-row gap-8 items-center">
   <img 
-    src={founderImg} 
+    src={founder} 
     alt="Mr. Praveen Kumar" 
     className="w-64 h-64 object-cover rounded-2xl"
   />
