@@ -116,9 +116,10 @@ const Profile = () => {
   return (
     <>
       <PageBanner
-        title="Company Profile"
+        image="https://raveendra-777.github.io/nikhil-Varma-construction/11.jpg"
+        title="Company"
+        highlight="Profile"
         subtitle="Defining Construction Excellence Since 2020"
-        backgroundImage="https://raveendra-777.github.io/nikhil-Varma-construction/11.jpg"
       />
 
       {/* About Section */}
