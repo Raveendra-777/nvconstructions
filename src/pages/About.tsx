@@ -58,7 +58,7 @@ const About = () => {
                   {text}
                 </motion.p>
               ))}
-              <SectionHeading subtitle="Overview" title="Founder" />
+              
               <SectionHeading subtitle="– Founder & CEO" title="Mr.Praveen Kumar T.C" style={{textAlign:"left"}} />
               {[
                 "Founded under the leadership of Praveen Kumar, the company has grown steadily by emphasizing quality workmanship, transparency, and timely project completion. With a team of around 10–25 employees, the firm handles a wide range of civil engineering and construction projects.",
