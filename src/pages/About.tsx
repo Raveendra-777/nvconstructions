@@ -72,7 +72,7 @@ const About = () => {
                 </motion.p>
               ))}
               
-              <SectionHeading subtitle="– Founder & CEO" title="Mr.Praveen Kumar T.C" style={{textAlign:"left"}} />
+              <SectionHeading subtitle="– Founder & CEO" title="Mr.Praveen Kumar T.C" centered={false} />
               
               <div className="flex flex-col md:flex-row gap-8 items-center">
   <img 
