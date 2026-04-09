@@ -56,6 +56,22 @@ const About = () => {
                   {text}
                 </motion.p>
               ))}
+              <SectionHeading subtitle="Overview" title="Founder" />
+              {[
+                "Founded under the leadership of Praveen Kumar, the company has grown steadily by emphasizing quality workmanship, transparency, and timely project completion. With a team of around 10–25 employees, the firm handles a wide range of civil engineering and construction projects.",
+              ].map((text, i) => (
+                <motion.p
+                  key={i}
+                  custom={i}
+                  variants={textRevealVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  {text}
+                </motion.p>
+              ))}
+              
             </div>
           </div>
         </div>
