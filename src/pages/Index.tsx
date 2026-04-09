@@ -16,7 +16,7 @@ const services = [
 ];
 
 const stats = [
-  { icon: Shield, value: 5, suffix: "+", label: "Years Experience" },
+  { icon: Shield, value: 26, suffix: "+", label: "Years Experience" },
   { icon: Building2, value: 50, suffix: "+", label: "Projects Completed" },
   { icon: Users, value: 100, suffix: "+", label: "Happy Clients" },
   { icon: Clock, value: 100, suffix: "%", label: "On-Time Delivery" },
