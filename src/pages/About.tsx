@@ -60,7 +60,16 @@ const About = () => {
               ))}
               
               <SectionHeading subtitle="– Founder & CEO" title="Mr.Praveen Kumar T.C" style={{textAlign:"left"}} />
-              {[
+              
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+  <img 
+    src={founder} 
+    alt="Mr. Praveen Kumar" 
+    className="w-64 h-64 object-cover rounded-2xl"
+  />
+
+  <p className="text-muted-foreground">
+    {[
                 "Founded under the leadership of Praveen Kumar, the company has grown steadily by emphasizing quality workmanship, transparency, and timely project completion. With a team of around 10–25 employees, the firm handles a wide range of civil engineering and construction projects.",
               ].map((text, i) => (
                 <motion.p
@@ -74,15 +83,6 @@ const About = () => {
                   {text}
                 </motion.p>
               ))}
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-  <img 
-    src={founder} 
-    alt="Mr. Praveen Kumar" 
-    className="w-64 h-64 object-cover rounded-2xl"
-  />
-
-  <p className="text-muted-foreground">
-    Founded under the leadership of Praveen Kumar...
   </p>
 </div>
               
