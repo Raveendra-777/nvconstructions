@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, Target, Handshake, HardHat, BarChart} from "lucide-react";
+import { Award, Target, Handshake, HardHat, BarChart, Users} from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import PageBanner from "@/components/PageBanner";
 import aboutHero from "@/assets/about-hero.jpg";
@@ -7,6 +7,7 @@ import founder from "@/assets/Praveen.webp";
 
 
 const values = [
+  { icon: Users, title: "50+", description: "Happy Customers." },
   { icon: BarChart, title: "30+", description: "Projects Completed." },
   { icon: BarChart, title: "40+", description: "Locations Across City." },
   { icon: BarChart, title: "26+", description: "Years Of Experience." },
