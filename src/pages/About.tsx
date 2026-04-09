@@ -7,10 +7,14 @@ import founder from "@/assets/Praveen.webp";
 
 
 const values = [
+  { title: "30+", description: "Projects Completed." },
+  { title: "40+", description: "Locations Across City." },
+  { title: "26+", description: "Years Of Expirence." },
   { icon: Award, title: "Quality", description: "We use only the finest materials and techniques to ensure lasting results." },
   { icon: Target, title: "Precision", description: "Every project is executed with meticulous attention to detail." },
   { icon: Handshake, title: "Trust", description: "Transparent communication and honest pricing are our hallmarks." },
   { icon: HardHat, title: "Safety", description: "We maintain the highest safety standards across all our sites." },
+  
 ];
 
 const containerVariants = {
@@ -65,7 +69,7 @@ const About = () => {
   <img 
     src={founder} 
     alt="Mr. Praveen Kumar" 
-    className="w-64 h-64 object-cover rounded-2xl"
+    className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl shadow-lg"
   />
 
   <p className="text-muted-foreground">
@@ -85,6 +89,28 @@ const About = () => {
               ))}
   </p>
 </div>
+              const services = {
+              "22+ Years Of Experience In The Construction Industry",
+              "Founder Of Nikhil Varma Constructions Since 2020",
+              "Strong Expertise In Planning And Project Execution",
+              "Committed To Delivering Reliable And High-Quality Projects"
+              
+              
+              }
+              <ul className="list-disc pl-5 text-muted-foreground space-y-2">
+  {services.map((item, i) => (
+    <motion.li
+      key={i}
+      custom={i}
+      variants={textRevealVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      {item}
+    </motion.li>
+  ))}
+</ul>
               
             </div>
           </div>
